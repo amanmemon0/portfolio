@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aman Memon — Data Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --surface2: #1a1a24;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --text: #f0efe8;
+    --muted: #8b8b9a;
+    --accent: #5b8af0;
+    --accent2: #7c5bf0;
+    --accent3: #5bf0c8;
+    --gold: #f0b754;
+    --glow: rgba(91,138,240,0.15);
+    --font-head: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.2rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, var(--accent), var(--accent3));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.88rem;
+    letter-spacing: 0.04em;
+    font-weight: 500;
+    transition: color 0.2s;
+    font-family: var(--font-mono);
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 2rem 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .hero-tag {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--accent3);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 28px; height: 1px;
+    background: var(--accent3);
+  }
+  .hero-name {
+    font-family: var(--font-head);
+    font-size: clamp(3.5rem, 9vw, 7.5rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+  }
+  .hero-name span {
+    display: block;
+    background: linear-gradient(135deg, #f0efe8 30%, rgba(240,239,232,0.45));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-name .accent-line {
+    background: linear-gradient(135deg, var(--accent), var(--accent2), var(--accent3));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    font-weight: 300;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    border-radius: 6px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    font-family: var(--font-body);
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    border: 1px solid transparent;
+  }
+  .btn-primary:hover { background: #7099f5; transform: translateY(-2px); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border2);
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+  .hero-glow {
+    position: absolute;
+    top: 20%; right: -10%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(91,138,240,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-glow2 {
+    position: absolute;
+    bottom: 10%; left: -5%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(91,240,200,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black, transparent);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem; left: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    letter-spacing: 0.08em;
+  }
+  .scroll-line {
+    width: 40px; height: 1px;
+    background: var(--border2);
+    position: relative;
+    overflow: hidden;
+  }
+  .scroll-line::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: var(--accent3);
+    animation: slide 2s ease-in-out infinite;
+  }
+  @keyframes slide { 0%{left:-100%} 100%{left:100%} }
+
+  section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+  }
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 20px; height: 1px;
+    background: var(--accent);
+  }
+  .section-title {
+    font-family: var(--font-head);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 3.5rem;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .about-text p {
+    color: var(--muted);
+    line-height: 1.9;
+    margin-bottom: 1.25rem;
+    font-weight: 300;
+  }
+  .about-text p strong { color: var(--text); font-weight: 500; }
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .stat-card:hover { border-color: var(--border2); transform: translateY(-3px); }
+  .stat-number {
+    font-family: var(--font-head);
+    font-size: 2.2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent), var(--accent3));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    letter-spacing: 0.04em;
+  }
+
+  /* SKILLS */
+  #skills { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); max-width: 100%; }
+  #skills > .inner { max-width: 1100px; margin: 0 auto; padding: 6rem 2rem; }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .skill-category {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.75rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .skill-category:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .skill-cat-title {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent3);
+    margin-bottom: 1.25rem;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .skill-tag {
+    background: rgba(91,138,240,0.08);
+    border: 1px solid rgba(91,138,240,0.2);
+    color: var(--text);
+    font-size: 0.82rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .skill-tag:hover { background: rgba(91,138,240,0.16); border-color: var(--accent); }
+
+  /* EXPERIENCE */
+  .timeline {
+    position: relative;
+    padding-left: 2.5rem;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 3.5rem;
+  }
+  .timeline-dot {
+    position: absolute;
+    left: -2.5rem; top: 8px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px rgba(91,138,240,0.15);
+    transform: translateX(-4px);
+  }
+  .timeline-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .timeline-badge {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.65rem;
+    border-radius: 3px;
+    font-weight: 500;
+  }
+  .badge-internship { background: rgba(91,240,200,0.1); color: var(--accent3); border: 1px solid rgba(91,240,200,0.2); }
+  .badge-course { background: rgba(124,91,240,0.1); color: #a78df5; border: 1px solid rgba(124,91,240,0.2); }
+  .badge-award { background: rgba(240,183,84,0.1); color: var(--gold); border: 1px solid rgba(240,183,84,0.2); }
+  .badge-degree { background: rgba(91,138,240,0.1); color: var(--accent); border: 1px solid rgba(91,138,240,0.25); }
+  .timeline-date { font-size: 0.8rem; color: var(--muted); font-family: var(--font-mono); }
+  .timeline-title {
+    font-family: var(--font-head);
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    letter-spacing: -0.02em;
+  }
+  .timeline-org { font-size: 0.9rem; color: var(--accent); margin-bottom: 1rem; }
+  .timeline-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .timeline-list li {
+    color: var(--muted);
+    font-size: 0.92rem;
+    font-weight: 300;
+    padding-left: 1.25rem;
+    position: relative;
+    line-height: 1.7;
+  }
+  .timeline-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent3);
+    font-size: 0.7rem;
+    top: 0.35em;
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.75rem;
+  }
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 2rem;
+    transition: border-color 0.25s, transform 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent3));
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .project-card:hover { border-color: var(--border2); transform: translateY(-4px); }
+  .project-card:hover::before { opacity: 1; }
+  .project-number {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+  .project-title {
+    font-family: var(--font-head);
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+  }
+  .project-desc {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.75;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1.5rem;
+  }
+  .project-tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+  .project-links { display: flex; gap: 1rem; }
+  .project-link {
+    font-size: 0.82rem;
+    font-family: var(--font-mono);
+    color: var(--accent3);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: gap 0.15s;
+  }
+  .project-link:hover { gap: 0.6rem; }
+  .project-link svg { width: 12px; height: 12px; }
+  .project-wip {
+    font-size: 0.72rem;
+    background: rgba(239,159,39,0.1);
+    border: 1px solid rgba(239,159,39,0.25);
+    color: #f0b754;
+    padding: 0.15rem 0.55rem;
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    letter-spacing: 0.06em;
+    display: inline-block;
+    margin-top: 0.25rem;
+  }
+
+  /* CERTIFICATIONS — new expanded section */
+  #certs { padding-top: 0; }
+  .certs-filter {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+  .filter-btn {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.35rem 1rem;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(91,138,240,0.08);
+  }
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.25rem;
+  }
+  .cert-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .cert-card:hover {
+    border-color: var(--border2);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+  }
+  .cert-accent-bar {
+    height: 3px;
+    width: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent3));
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .cert-card:hover .cert-accent-bar { opacity: 1; }
+  .cert-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    flex: 1;
+  }
+  .cert-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .cert-issuer {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .cert-badge {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+  .cert-badge-intern { background: rgba(91,240,200,0.1); color: var(--accent3); border: 1px solid rgba(91,240,200,0.2); }
+  .cert-badge-course { background: rgba(124,91,240,0.1); color: #a78df5; border: 1px solid rgba(124,91,240,0.2); }
+  .cert-badge-award { background: rgba(240,183,84,0.1); color: var(--gold); border: 1px solid rgba(240,183,84,0.2); }
+  .cert-badge-degree { background: rgba(91,138,240,0.1); color: var(--accent); border: 1px solid rgba(91,138,240,0.25); }
+  .cert-title {
+    font-family: var(--font-head);
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+  .cert-skills {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+  .cert-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border);
+  }
+  .cert-date {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+  }
+  .cert-view-link {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--accent3);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    letter-spacing: 0.04em;
+    transition: gap 0.15s;
+  }
+  .cert-view-link:hover { gap: 0.5rem; }
+  .cert-view-link svg { width: 11px; height: 11px; }
+  .cert-highlight {
+    position: absolute;
+    top: 0.75rem; right: 0.75rem;
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+
+  /* CERT MODAL */
+  .cert-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(12px);
+    z-index: 200;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  .cert-modal-overlay.open { display: flex; }
+  .cert-modal {
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    border-radius: 20px;
+    max-width: 700px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+  }
+  .cert-modal-img {
+    width: 100%;
+    border-radius: 16px 16px 0 0;
+    display: block;
+    max-height: 420px;
+    object-fit: contain;
+    background: #0d0d14;
+  }
+  .cert-modal-body {
+    padding: 2rem;
+  }
+  .cert-modal-body h3 {
+    font-family: var(--font-head);
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.02em;
+  }
+  .cert-modal-body p {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+  }
+  .cert-modal-close {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.2s;
+  }
+  .cert-modal-close:hover { background: rgba(255,255,255,0.12); }
+
+  /* CONTACT */
+  .contact-inner {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .contact-inner .section-label { justify-content: center; }
+  .contact-inner .section-label::before { display: none; }
+  .contact-desc {
+    color: var(--muted);
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+    font-size: 1.05rem;
+  }
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-family: var(--font-mono);
+    padding: 0.65rem 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    transition: all 0.2s;
+    letter-spacing: 0.04em;
+  }
+  .contact-link:hover { color: var(--text); border-color: var(--accent); background: rgba(91,138,240,0.06); transform: translateY(-2px); }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-family: var(--font-mono);
+    letter-spacing: 0.04em;
+  }
+
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: fadeUp 0.7s ease forwards;
+  }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.3s; }
+  .delay-4 { animation-delay: 0.45s; }
+  .delay-5 { animation-delay: 0.6s; }
+
+  .divider {
+    max-width: 1100px;
+    margin: 0 auto;
+    height: 1px;
+    background: var(--border);
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem; }
+    .nav-links { gap: 1.25rem; }
+    .hero { padding: 7rem 1.25rem 3rem; }
+    section { padding: 4rem 1.25rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-glow, .hero-glow2 { display: none; }
+  }
+  @media (max-width: 480px) {
+    .nav-links { display: none; }
+    .hero-cta { flex-direction: column; }
+    .btn { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">AM</a>
+  <ul class="nav-links">
+    <li><a href="#about">about</a></li>
+    <li><a href="#skills">skills</a></li>
+    <li><a href="#experience">experience</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#certs">certs</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+
+  <p class="hero-tag fade-up">Available for opportunities</p>
+
+  <h1 class="hero-name">
+    <span class="fade-up delay-1">Aman</span>
+    <span class="accent-line fade-up delay-2">Memon.</span>
+  </h1>
+
+  <p class="hero-sub fade-up delay-3">
+    Aspiring <strong style="color:var(--text); font-weight:500">Data Analyst</strong> — turning raw, messy data into
+    clean insights that actually drive decisions. Python, SQL, Power BI, and a deep love
+    for making patterns visible.
+  </p>
+
+  <div class="hero-cta fade-up delay-4">
+    <a href="https://amanmemon0.github.io/portfolio/AMAN_MEMON_CV[1] - Copy.pdf" class="btn btn-primary" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download Resume
+    </a>
+    <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+    <a href="https://github.com/amanmemon0" target="_blank" class="btn btn-ghost">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+      GitHub
+    </a>
+  </div>
+
+  <div class="scroll-hint fade-up delay-5">
+    <div class="scroll-line"></div>
+    scroll to explore
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label">01 — About</p>
+  <h2 class="section-title">The person behind<br>the pivot tables</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm an <strong>Information Technology graduate from Ganpat University</strong> (Diploma with CGPA 8.54), currently pursuing my B.Tech while diving deep into data analytics.</p>
+      <p>I completed a professional Data Analytics course at TCP India, a remote internship with LaunchED Global, and a research internship through Ganpat University's WSRIP program — earning a <strong>3rd rank in the GUNI Winter Student Research Projects</strong> for my IoT-based waste disposal system.</p>
+      <p>My work lives at the intersection of <strong>Python scripting, SQL querying, and Power BI dashboarding</strong>. I care about clean data, honest visualizations, and insights that actually help people make better decisions.</p>
+      <p>Outside of data, I tinker with IoT hardware (ESP8266 + Firebase), build clean frontends, and have been recognised for my contributions in event management at Ganpat University's YANTRA 2023.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-card">
+        <div class="stat-number">6+</div>
+        <div class="stat-label">Certifications earned</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">2+</div>
+        <div class="stat-label">Internships completed</div>
+      </div>
+      <!-- <div class="stat-card">
+        <div class="stat-number">3rd</div>
+        <div class="stat-label">Rank — GUNI SciTech 2026</div>
+      </div> -->
+      <div class="stat-card">
+        <div class="stat-number">8.54</div>
+        <div class="stat-label">CGPA — Diploma IT</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<div id="skills">
+  <div class="inner">
+    <p class="section-label">02 — Skills</p>
+    <h2 class="section-title">Tools I work with</h2>
+    <div class="skills-grid">
+      <div class="skill-category">
+        <p class="skill-cat-title">Data Analysis</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Pandas</span>
+          <span class="skill-tag">NumPy</span>
+          <span class="skill-tag">EDA</span>
+          <span class="skill-tag">Data Cleaning</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <p class="skill-cat-title">Visualization</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Power BI</span>
+          <span class="skill-tag">Matplotlib</span>
+          <span class="skill-tag">Seaborn</span>
+          <span class="skill-tag">Plotly</span>
+          <span class="skill-tag">Excel</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <p class="skill-cat-title">Databases</p>
+        <div class="skill-tags">
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">MySQL</span>
+          <span class="skill-tag">MongoDB</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <p class="skill-cat-title">Dev Tools</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">GitHub</span>
+          <span class="skill-tag">Jupyter</span>
+          <span class="skill-tag">Google Colab</span>
+          <span class="skill-tag">VS Code</span>
+          <span class="skill-tag">Anaconda</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <p class="skill-cat-title">Frontend</p>
+        <div class="skill-tags">
+          <span class="skill-tag">HTML</span>
+          <span class="skill-tag">CSS</span>
+          <span class="skill-tag">Tailwind CSS</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <p class="skill-cat-title">IoT & ML</p>
+        <div class="skill-tags">
+          <span class="skill-tag">ESP8266</span>
+          <span class="skill-tag">Firebase</span>
+          <span class="skill-tag">ML Basics</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label">03 — Experience</p>
+  <h2 class="section-title">Where I've worked<br>and learned</h2>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-meta">
+        <span class="timeline-badge badge-award">🏆 3rd Rank — Research</span>
+        <span class="timeline-date">Apr 2026 · Ganpat University</span>
+      </div>
+      <h3 class="timeline-title">GUNI Winter Student Research Internship Program</h3>
+      <p class="timeline-org">Ganpat University — WSRIP 2025–26</p>
+      <ul class="timeline-list">
+        <li>Developed an IoT-Based Waste Disposal Management System.</li>
+        <li>Secured <strong style="color:var(--gold)">3rd rank</strong> in the GUNI Winter Student Research Projects Start-up Competition (April 24, 2026).</li>
+        <li>Completed a 4–8 week research project at the Faculty of Diploma Engineering, Ganpat University.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-meta">
+        <span class="timeline-badge badge-award">🥉 3rd Rank — SciTech Fest</span>
+        <span class="timeline-date">Mar 2026 · GUNI SciTech Festival</span>
+      </div>
+      <h3 class="timeline-title">Working Model — 3rd Rank</h3>
+      <p class="timeline-org">GUNI SciTech Festival 2026 · Mehsana Urban Institute of Sciences</p>
+      <ul class="timeline-list">
+        <li>Secured 3rd rank in the Working Model category at GUNI SciTech Festival 2026 (National Science Day celebration, March 6).</li>
+        <li>Presented BSPP (IoT) project in association with Vigyan Gurjari, Microbiologists Society India, and Gujarat Science Academy.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-meta">
+        <span class="timeline-badge badge-internship">Internship</span>
+        <span class="timeline-date">Jul – Aug 2025 · Remote</span>
+      </div>
+      <h3 class="timeline-title">Data Analytics Intern</h3>
+      <p class="timeline-org">LaunchED Global</p>
+      <ul class="timeline-list">
+        <li>Handled and preprocessed raw datasets using Python (NumPy, Pandas) to ensure data quality and consistency for downstream analysis.</li>
+        <li>Conducted Exploratory Data Analysis (EDA) to uncover patterns, trends, and actionable insights across large, multi-variable datasets.</li>
+        <li>Visualised findings using Matplotlib and Seaborn, contributing to internal reports and data summaries shared with the team.</li>
+        <li>Collaborated in a fully remote setting, delivering clean structured pipelines that supported business decision-making.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-meta">
+        <span class="timeline-badge badge-course">Professional Course</span>
+        <span class="timeline-date">Jul 2025</span>
+      </div>
+      <h3 class="timeline-title">Data Analytics Professional Course</h3>
+      <p class="timeline-org">TCP India</p>
+      <ul class="timeline-list">
+        <li>Mastered core Python data libraries — NumPy, Pandas, Matplotlib — through structured, project-based curriculum.</li>
+        <li>Practiced SQL for database management, complex joins, subqueries, and data extraction workflows.</li>
+        <li>Built interactive Power BI dashboards for data storytelling and business intelligence reporting.</li>
+        <li>Completed end-to-end mini-projects covering the full pipeline: data cleaning → EDA → visualization → insights.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-meta">
+        <span class="timeline-badge badge-internship">Internship</span>
+        <span class="timeline-date">Jun 2023 · BrainyBeam Technologies</span>
+      </div>
+      <h3 class="timeline-title">Python with Django Intern</h3>
+      <p class="timeline-org">BrainyBeam Technologies Pvt Ltd, Ahmedabad</p>
+      <ul class="timeline-list">
+        <li>Completed intensive Python with Django internship program (12–17 June 2023).</li>
+        <li>Gained hands-on experience with Python fundamentals and web backend development.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label">04 — Projects</p>
+  <h2 class="section-title">Things I've built</h2>
+
+  <div class="projects-grid">
+    <div class="project-card">
+      <p class="project-number">01</p>
+      <h3 class="project-title">Personal Portfolio Website</h3>
+      <p class="project-desc">A fully responsive, modern portfolio to showcase my skills, certifications, and projects. Built from scratch with clean UI principles — no templates, no frameworks, just intent-driven design.</p>
+      <div class="project-tags">
+        <span class="project-tag">HTML</span>
+        <span class="project-tag">CSS</span>
+        <span class="project-tag">Tailwind CSS</span>
+        <span class="project-tag">GitHub Pages</span>
+      </div>
+      <div class="project-links">
+        <a href="https://amanmemon0.github.io/portfolio" target="_blank" class="project-link">
+          Live Demo
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+        <a href="https://github.com/amanmemon0/portfolio" target="_blank" class="project-link">
+          View Code
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <p class="project-number">02</p>
+      <h3 class="project-title">IoT Waste Disposal Management System</h3>
+      <p class="project-desc">A research-grade IoT system for smart waste bin monitoring using ESP8266. Real-time fill-level tracking via Firebase cloud backend, rendered on a live dashboard. Won 3rd rank at GUNI WSRIP & SciTech Festival 2026.</p>
+      <div class="project-tags">
+        <span class="project-tag">ESP8266</span>
+        <span class="project-tag">IoT</span>
+        <span class="project-tag">Firebase</span>
+        <span class="project-tag">Real-time DB</span>
+        <span class="project-tag">Ganpat University</span>
+      </div>
+      <span class="project-wip">🏆 3rd Rank — GUNI WSRIP 2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certs" style="padding-top:0">
+  <p class="section-label">05 — Certifications</p>
+  <h2 class="section-title">Credentials &<br>achievements</h2>
+
+  <div class="certs-filter">
+    <button class="filter-btn active" data-filter="all">All (7)</button>
+    <button class="filter-btn" data-filter="internship">Internships</button>
+    <button class="filter-btn" data-filter="course">Courses</button>
+    <button class="filter-btn" data-filter="award">Awards</button>
+    <button class="filter-btn" data-filter="degree">Degree</button>
+  </div>
+
+  <div class="certs-grid" id="certsGrid">
+
+    <!-- 1. TCP India -->
+    <div class="cert-card"
+         data-category="course"
+         data-title="Data Analytics Professional"
+         data-issuer="TCP India"
+         data-desc="Successfully completed the IT Professional Technology program by The Career Platform of India — Data Analytics. Covered HTML, Java, .NET Core and data analytics technologies."
+         data-date="Completed 29 Jul 2025"
+         data-img="https://drive.google.com/thumbnail?id=1OAHwh6PohLaaRcxCJ-fmNgCDfS-vrrZ3&sz=w800"
+         data-link="https://drive.google.com/file/d/1OAHwh6PohLaaRcxCJ-fmNgCDfS-vrrZ3/view">
+      <div class="cert-accent-bar"></div>
+      <div class="cert-body">
+        <div class="cert-top">
+          <span class="cert-issuer">TCP India</span>
+          <span class="cert-badge cert-badge-course">Course</span>
+        </div>
+        <h3 class="cert-title">Data Analytics Professional</h3>
+        <p class="cert-skills">Python · Power BI · NumPy · Pandas · SQL · Data Cleaning</p>
+        <div class="cert-footer">
+          <span class="cert-date">Jul 2025</span>
+          <a class="cert-view-link" href="https://drive.google.com/file/d/1OAHwh6PohLaaRcxCJ-fmNgCDfS-vrrZ3/view" target="_blank" onclick="event.stopPropagation()">
+            View Cert
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. LaunchED Global -->
+    <div class="cert-card"
+         data-category="internship"
+         data-title="Data Analytics Internship"
+         data-issuer="LaunchED Global"
+         data-desc="Successfully completed the Mentorship Program on Data Analytics with LaunchED Global. Demonstrated keen enthusiasm and delivered data insights in a remote setting. Certificate ID: LEDCC4814."
+         data-date="Completed Aug 2025"
+         data-img="https://drive.google.com/thumbnail?id=1t0l6eVPpzpWx0_cJ00TZFl8Ttm61RcSH&sz=w800"
+         data-link="https://drive.google.com/file/d/1t0l6eVPpzpWx0_cJ00TZFl8Ttm61RcSH/view">
+      <div class="cert-accent-bar"></div>
+      <div class="cert-body">
+        <div class="cert-top">
+          <span class="cert-issuer">LaunchED Global</span>
+          <span class="cert-badge cert-badge-intern">Internship</span>
+        </div>
+        <h3 class="cert-title">Data Analytics Internship</h3>
+        <p class="cert-skills">Power BI · EDA · Data Cleaning · ML Basics · Python · Seaborn</p>
+        <div class="cert-footer">
+          <span class="cert-date">Aug 2025 · ID: LEDCC4814</span>
+          <a class="cert-view-link" href="https://drive.google.com/file/d/1t0l6eVPpzpWx0_cJ00TZFl8Ttm61RcSH/view" target="_blank" onclick="event.stopPropagation()">
+            View Cert
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. GUNI WSRIP -->
+    <div class="cert-card"
+         data-category="award"
+         data-title="GUNI-WSRIP Winner Certificate"
+         data-issuer="Ganpat University"
+         data-desc="Winner Certificate for successfully completing the GUNI Winter Student Research Internship Program 2025-26. Worked on the research project 'IoT-Based Waste Disposal Management System' and secured 3rd rank in the Start-up Competition (April 24, 2026)."
+         data-date="Apr 2026 · 3rd Rank"
+         data-img="https://drive.google.com/thumbnail?id=1ABHr84wXQZIPtomIdg1wrnwHqdm0jzXE&sz=w800"
+         data-link="https://drive.google.com/file/d/1ABHr84wXQZIPtomIdg1wrnwHqdm0jzXE/view">
+      <div class="cert-accent-bar"></div>
+      <div class="cert-body">
+        <div class="cert-top">
+          <span class="cert-issuer">Ganpat University</span>
+          <span class="cert-badge cert-badge-award">🏆 Award</span>
+        </div>
+        <h3 class="cert-title">GUNI-WSRIP Winner — 3rd Rank</h3>
+        <p class="cert-skills">IoT · ESP8266 · Firebase · Research · Waste Management System</p>
+        <div class="cert-footer">
+          <span class="cert-date">Apr 2026 · Start-up Competition</span>
+          <a class="cert-view-link" href="https://drive.google.com/file/d/1ABHr84wXQZIPtomIdg1wrnwHqdm0jzXE/view" target="_blank" onclick="event.stopPropagation()">
+            View Cert
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. GUNI SciTech Festival -->
+    <div class="cert-card"
+         data-category="award"
+         data-title="GUNI SciTech Festival 2026 — 3rd Rank"
+         data-issuer="Ganpat University · Mehsana Urban Institute of Sciences"
+         data-desc="Secured 3rd rank in the Working Model category at GUNI SciTech Festival 2026, celebrating National Science Day (March 6, 2026). Organised in association with Vigyan Gurjari, Microbiologists Society India, and Gujarat Science Academy."
+         data-date="Mar 6, 2026"
+         data-img="https://drive.google.com/thumbnail?id=1VmyYXaYAQMA3LNzlSNO7g8Idcj4YdWNL&sz=w800"
+         data-link="https://drive.google.com/file/d/1VmyYXaYAQMA3LNzlSNO7g8Idcj4YdWNL/view">
+      <div class="cert-accent-bar"></div>
+      <div class="cert-body">
+        <div class="cert-top">
+          <span class="cert-issuer">GUNI · MUIS</span>
+          <span class="cert-badge cert-badge-award">🥉 3rd Rank</span>
+        </div>
+        <h3 class="cert-title">SciTech Festival 2026 — Working Model</h3>
+        <p class="cert-skills">IoT · Working Model · National Science Day · BSPP</p>
+        <div class="cert-footer">
+          <span class="cert-date">Mar 6, 2026</span>
+          <a class="cert-view-link" href="https://drive.google.com/file/d/1VmyYXaYAQMA3LNzlSNO7g8Idcj4YdWNL/view" target="_blank" onclick="event.stopPropagation()">
+            View Cert
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. BrainyBeam Internship -->
+    <div class="cert-card"
+         data-category="internship"
+         data-title="Python with Django Internship"
+         data-issuer="BrainyBeam Technologies Pvt Ltd"
+         data-desc="Successfully completed the internship program requirements for Python with Django at BrainyBeam Technologies Pvt Ltd, Ahmedabad. Duration: 12–17 June 2023."
+         data-date="Jun 12–17, 2023"
+         data-img="https://drive.google.com/thumbnail?id=1n25tjf2HOTNlAw-wAo6bYplTKIu0QKn2&sz=w800"
+         data-link="https://drive.google.com/file/d/1n25tjf2HOTNlAw-wAo6bYplTKIu0QKn2/view">
+      <div class="cert-accent-bar"></div>
+      <div class="cert-body">
+        <div class="cert-top">
+          <span class="cert-issuer">BrainyBeam Technologies</span>
+          <span class="cert-badge cert-badge-intern">Internship</span>
+        </div>
+        <h3 class="cert-title">Python with Django</h3>
+        <p class="cert-skills">Python · Django · Web Development · Backend</p>
+        <div class="cert-footer">
+          <span class="cert-date">Jun 2023</span>
+          <a class="cert-view-link" href="https://drive.google.com/file/d/1n25tjf2HOTNlAw-wAo6bYplTKIu0QKn2/view" target="_blank" onclick="event.stopPropagation()">
+            View Cert
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Event Management -->
+    <div class="cert-card"
+         data-category="award"
+         data-title="Certificate of Appreciation — YANTRA 2023"
+         data-issuer="Ganpat University · B.S. Patel Polytechnic"
+         data-desc="Certificate of Appreciation for successfully administering an event in YANTRA 2023 at Ganpat University, B.S. Patel Polytechnic. Recognised with Best Award for event management contributions."
+         data-date="2023"
+         data-img="https://drive.google.com/thumbnail?id=12ZLFrWcuBRtzDzmJf-743dbx0kPkpdjU&sz=w800"
+         data-link="https://drive.google.com/file/d/12ZLFrWcuBRtzDzmJf-743dbx0kPkpdjU/view">
+      <div class="cert-accent-bar"></div>
+      <div class="cert-body">
+        <div class="cert-top">
+          <span class="cert-issuer">Ganpat University</span>
+          <span class="cert-badge cert-badge-award">🏅 Best Award</span>
+        </div>
+        <h3 class="cert-title">Event Management — YANTRA 2023</h3>
+        <p class="cert-skills">Event Management · Leadership · Administration · Best Award</p>
+        <div class="cert-footer">
+          <span class="cert-date">YANTRA 2023</span>
+          <a class="cert-view-link" href="https://drive.google.com/file/d/12ZLFrWcuBRtzDzmJf-743dbx0kPkpdjU/view" target="_blank" onclick="event.stopPropagation()">
+            View Cert
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. Diploma in IT -->
+    <div class="cert-card"
+         data-category="degree"
+         data-title="Diploma in Engineering — Information Technology"
+         data-issuer="Ganpat University"
+         data-desc="Diploma in Engineering in Information Technology from Ganpat University (Sr. No. 007852). Examined in April–June 2024, adjudged to have passed with CGPA 8.54. Conferred on January 16, 2025 at Ganpat Vidyanagar, Mehsana, Gujarat."
+         data-date="Conferred Jan 16, 2025 · CGPA 8.54"
+         data-img="https://drive.google.com/thumbnail?id=1ptjnVXpem8falEkLclID_VEkzrFqBZc8&sz=w800"
+         data-link="https://drive.google.com/file/d/1ptjnVXpem8falEkLclID_VEkzrFqBZc8/view">
+      <div class="cert-accent-bar"></div>
+      <div class="cert-body">
+        <div class="cert-top">
+          <span class="cert-issuer">Ganpat University</span>
+          <span class="cert-badge cert-badge-degree">Degree</span>
+        </div>
+        <h3 class="cert-title">Diploma in Engineering — IT</h3>
+        <p class="cert-skills">Information Technology · CGPA 8.54 · Ganpat University</p>
+        <div class="cert-footer">
+          <span class="cert-date">Jan 2025 · CGPA 8.54</span>
+          <a class="cert-view-link" href="https://drive.google.com/file/d/1ptjnVXpem8falEkLclID_VEkzrFqBZc8/view" target="_blank" onclick="event.stopPropagation()">
+            View Cert
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CERT MODAL -->
+<div class="cert-modal-overlay" id="certModal">
+  <div class="cert-modal">
+    <button class="cert-modal-close" id="certModalClose">✕</button>
+    <img class="cert-modal-img" id="certModalImg" src="" alt="Certificate">
+    <div class="cert-modal-body">
+      <p style="font-family:var(--font-mono);font-size:0.7rem;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.5rem" id="certModalIssuer"></p>
+      <h3 id="certModalTitle"></h3>
+      <p style="margin-top:0.75rem;line-height:1.7" id="certModalDesc"></p>
+      <p style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.75rem" id="certModalDate"></p>
+      <a id="certModalLink" href="#" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.5rem;padding:0.65rem 1.5rem;background:var(--accent);color:#fff;text-decoration:none;border-radius:6px;font-size:0.85rem;font-family:var(--font-mono);letter-spacing:0.04em;transition:background 0.2s" onmouseover="this.style.background='#7099f5'" onmouseout="this.style.background='var(--accent)'">
+        Open Full Certificate ↗
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact" style="background: var(--surface); max-width:100%; border-top: 1px solid var(--border);">
+  <div class="contact-inner" style="max-width:600px; margin:0 auto; padding: 6rem 2rem;">
+    <p class="section-label" style="justify-content:center">06 — Contact</p>
+    <h2 class="section-title" style="text-align:center">Let's work together</h2>
+    <p class="contact-desc">I'm actively looking for data analyst roles, internships, and collaborative projects. If you're hiring, building something interesting, or just want to connect — reach out.</p>
+    <div class="contact-links">
+      <a href="mailto:amanmemon01@outlook.com" class="contact-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        Email me
+      </a>
+      <a href="https://www.linkedin.com/in/aman-memon0/" target="_blank" class="contact-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/amanmemon0" target="_blank" class="contact-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <a href="https://amanmemon0.github.io/portfolio" target="_blank" class="contact-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        Portfolio
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Designed & coded by Aman Memon · 2026 · Vadodara, Gujarat</p>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.timeline-item, .project-card, .skill-category, .cert-card, .stat-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  observer.observe(el);
+});
+
+// Filter buttons
+const filterBtns = document.querySelectorAll('.filter-btn');
+const certCards = document.querySelectorAll('.cert-card');
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    certCards.forEach(card => {
+      if (filter === 'all' || card.dataset.category === filter) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
+
+// Cert modal
+const modal = document.getElementById('certModal');
+const modalImg = document.getElementById('certModalImg');
+const modalTitle = document.getElementById('certModalTitle');
+const modalIssuer = document.getElementById('certModalIssuer');
+const modalDesc = document.getElementById('certModalDesc');
+const modalDate = document.getElementById('certModalDate');
+const modalLink = document.getElementById('certModalLink');
+
+certCards.forEach(card => {
+  card.addEventListener('click', (e) => {
+    if (e.target.closest('.cert-view-link')) return;
+    modalImg.src = card.dataset.img;
+    modalTitle.textContent = card.dataset.title;
+    modalIssuer.textContent = card.dataset.issuer;
+    modalDesc.textContent = card.dataset.desc;
+    modalDate.textContent = card.dataset.date;
+    modalLink.href = card.dataset.link;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+document.getElementById('certModalClose').addEventListener('click', () => {
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
+});
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+</script>
+</body>
+</html>
